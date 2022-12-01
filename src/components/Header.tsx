@@ -1,21 +1,15 @@
-import React from 'react';
-import FireFilled from '@ant-design/icons/FireFilled';
-import { Button, Space } from 'antd';
+import React, { useState } from 'react';
+import { Typography } from 'antd';
 
 export const Header = () => {
     return (
         <>
-            <div className='flex items-center w-full justify-between'>
+            <div className='flex items-center w-full justify-between px-5'>
                 <div className='flex items-center'>
-                    <div className='mr-5'><FireFilled/></div>
-                    <div className='uppercase font-bold text-2xl'>Weather-App</div>
+                    <Typography className='uppercase font-bold text-2xl'>Weather-App</Typography>
                 </div>
                 <div className='flex items-center'>
-                    <Space wrap>
-                        <Button>Установить геолокацию</Button>
-                        <Button>Добавить геолокацию</Button>
-                        <Button>Сохранить геолокацию</Button>
-                    </Space>
+                    <Typography className='font-bold text-2xl'>Сервис просмотра прогноза погоды</Typography>
                 </div>
             </div>
         </>
