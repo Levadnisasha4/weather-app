@@ -11,15 +11,16 @@ import { useCustomDispatch, useCustomSelector } from "./hooks/store";
 import { fetchCurrentWeather } from "./store/thunks/fetchCurrentWeather";
 import { MyGeolocations } from "./components/MyGeolocations";
 import { geolocationSlice } from "./store/slices/geolocationSlice";
+import Typography from "antd/es/typography/Typography";
 
 function App() {
   const dispatch = useCustomDispatch();
 
-  const { weather, isLoading } = useCustomSelector(
+  const { weather } = useCustomSelector(
     (state) => state.currentWeatherSliceReducer
   );
 
-  const { myGeolocation, currentGeolocation } = useCustomSelector(
+  const { myGeolocation, currentGeolocation, error } = useCustomSelector(
     (state) => state.geolocationSliceReducer
   );
 
@@ -32,11 +33,7 @@ function App() {
         })
       );
     });
-  }, [
-    dispatch,
-    navigator.geolocation.getCurrentPosition,
-    geolocationSlice.actions.saveMyGeolocation,
-  ]);
+  }, [dispatch]);
 
   useEffect(() => {
     if (currentGeolocation.lat && currentGeolocation.lon) {
@@ -46,15 +43,9 @@ function App() {
     } else {
       dispatch(fetchCurrentWeather(myGeolocation.lat, myGeolocation.lon));
     }
-  }, [
-    dispatch,
-    navigator.geolocation.getCurrentPosition,
-    fetchCurrentWeather,
-    currentGeolocation,
-    myGeolocation,
-  ]);
+  }, [dispatch, currentGeolocation, myGeolocation]);
 
-  return (
+  return error === "" ? (
     <>
       <div className="max-w-7xl h-16 flex items-center m-0 m-auto mt-5 mb-10 rounded-md shadow-2xl">
         <Header />
@@ -73,6 +64,10 @@ function App() {
         <MyGeolocations />
       </div>
     </>
+  ) : (
+    <Typography>
+      Приложение не может определить геопозицию без этого разрешения
+    </Typography>
   );
 }
 

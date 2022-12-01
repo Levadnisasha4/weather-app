@@ -18,29 +18,6 @@ export const DetailWeatherDays = () => {
 
   const dispatch = useCustomDispatch();
 
-  const daysMainData: ItemDetailWeatherDays[] = [
-    {
-      name: "Дата",
-      value: "date",
-    },
-    {
-      name: "Минимальная температура",
-      value: "17°",
-    },
-    {
-      name: "Максимальная температура",
-      value: "18°",
-    },
-    {
-      name: "Средняя температура",
-      value: "17°",
-    },
-    {
-      name: "Температура (ощущается)",
-      value: "17°",
-    },
-  ];
-
   const daysOthersData = [
     {
       name: "Описание",
@@ -95,9 +72,13 @@ export const DetailWeatherDays = () => {
                   /> */}
                 </div>
                 <div className="w-2/4 flex flex-col pl-10 items-start">
-                  {daysOthersData.map((itemDays: ItemDetailWeatherDays) => {
-                    return <DayWeatherInfoItem infoItem={itemDays} />;
-                  })}
+                  {daysOthersData.map(
+                    (itemDays: ItemDetailWeatherDays, index) => {
+                      return (
+                        <DayWeatherInfoItem key={index} infoItem={itemDays} />
+                      );
+                    }
+                  )}
                 </div>
               </div>
             </Tabs.TabPane>

@@ -68,6 +68,11 @@ export const AddGeolocation = () => {
               Редактировать геопозицию
             </Button>
             <Button
+              disabled={
+                currentGeolocation.name === "" ||
+                currentGeolocation.lat === "" ||
+                currentGeolocation.lon === ""
+              }
               onClick={() => {
                 dispatch(
                   geolocationSlice.actions.saveGeolocation({ new: true })
