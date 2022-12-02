@@ -15,8 +15,8 @@ type InitialStateType = {
 };
 
 const initialState: InitialStateType = {
-  geolocations: localStorage.getItem
-    ? JSON.parse(localStorage.getItem("geo") || "")
+  geolocations: localStorage.getItem("geo")
+    ? JSON.parse(localStorage.getItem("geo") || "{}")
     : [],
   currentGeolocation: { id: "", name: "", lat: "", lon: "" },
   myGeolocation: { lat: "", lon: "" },
