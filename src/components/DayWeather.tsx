@@ -1,5 +1,6 @@
 import React from "react";
 import { Weather } from "../store/types/types";
+import moment from "moment";
 
 interface Props {
   weather: Weather;
@@ -26,9 +27,7 @@ export const DayWeather = ({ weather }: Props) => {
         <div className="text-2xl">
           <div>
             Местное время:
-            <span>{`${new Date(weather.now_dt).getHours()}:${new Date(
-              weather.now_dt
-            ).getMinutes()}`}</span>
+            <span>{moment(weather.now_dt).format("LT")}</span>
           </div>
           <div>
             Местность: <span>{weather?.geo_object?.locality?.name}</span>
