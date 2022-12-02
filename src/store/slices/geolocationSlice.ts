@@ -15,7 +15,7 @@ type InitialStateType = {
 };
 
 const initialState: InitialStateType = {
-  geolocations: [],
+  geolocations: JSON.parse(localStorage.getItem("geo") || "") || [],
   currentGeolocation: { id: "", name: "", lat: "", lon: "" },
   myGeolocation: { lat: "", lon: "" },
   error: "",
@@ -38,6 +38,7 @@ export const geolocationSlice = createSlice({
           { ...state.currentGeolocation, id: Date.now().toString(36) },
         ];
         state.currentGeolocation = { id: "", name: "", lat: "", lon: "" };
+        localStorage.setItem("geo", JSON.stringify(state.geolocations));
       }
     },
     saveMyGeolocation(
@@ -53,6 +54,7 @@ export const geolocationSlice = createSlice({
       state.geolocations = state.geolocations.filter(
         ({ id }) => id !== action.payload.id
       );
+      localStorage.setItem("geo", JSON.stringify(state.geolocations));
     },
     selectGeolocation(
       state,

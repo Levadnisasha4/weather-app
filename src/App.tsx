@@ -3,8 +3,7 @@ import "./App.css";
 import "./index.css";
 import { Header } from "./components/Header";
 import { DayWeather } from "./components/DayWeather";
-import { AddGeolocation } from "./components/AddGeolocation";
-import { SaveGeolocation } from "./components/SaveGeolocation";
+import { Geolocation } from "./components/Geolocation";
 import { DayWeatherInfo } from "./components/DayWeatherInfo";
 import { DetailWeatherDays } from "./components/DetailWeatherDays";
 import { useCustomDispatch, useCustomSelector } from "./hooks/store";
@@ -58,9 +57,8 @@ function App() {
         <DetailWeatherDays />
       </div>
 
-      <div className="max-w-7xl max-h-72 flex justify-between m-0 m-auto mb-5">
-        <AddGeolocation />
-        <SaveGeolocation />
+      <div className="max-w-7xl max-h-96 flex justify-between m-0 m-auto mb-5">
+        <Geolocation />
         <MyGeolocations />
       </div>
     </>
@@ -72,4 +70,3 @@ function App() {
 }
 
 export default App;
-//border rounded-md border-black border-solid

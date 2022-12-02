@@ -23,10 +23,23 @@ const initialState: InitialStateType = {
       wind_speed: 0,
       pressure_mm: 0,
       humidity: 0,
+      icon: "",
     },
     forecasts: [
       {
         date: "",
+        parts: {
+          day: {
+            temp_min: 0,
+            temp_max: 0,
+            temp_avg: 0,
+            feels_like: 0,
+            condition: "",
+            wind_speed: 0,
+            pressure_mm: 0,
+            humidity: 0,
+          },
+        },
       },
     ],
     geo_object: {
@@ -37,6 +50,9 @@ const initialState: InitialStateType = {
     info: {
       lat: 0,
       lon: 0,
+      tzinfo: {
+        abbr: "",
+      },
     },
     now_dt: "",
   },

@@ -11,7 +11,7 @@ export const MyGeolocations = () => {
 
   return (
     <>
-      <div className="p-5 max-w-sm w-full rounded-md shadow-2xl">
+      <div className="p-5 w-1/2 w-full rounded-md shadow-2xl">
         <Typography className="font-semibold text-base leading-normal mb-2.5">
           Мои геопозиции
         </Typography>
@@ -21,7 +21,7 @@ export const MyGeolocations = () => {
           renderItem={(item) => (
             <List.Item
               className={
-                currentGeolocation.id === item.id ? "bg-sky-500" : undefined
+                currentGeolocation.id === item.id ? "bg-[#4793ff]" : undefined
               }
               actions={[
                 <span

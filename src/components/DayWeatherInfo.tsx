@@ -11,7 +11,7 @@ interface Props {
   weather: Weather;
 }
 
-function changeConditionWeather(condition: string) {
+export function changeConditionWeather(condition: string) {
   switch (condition) {
     case "clear":
       return "Ясно";
@@ -60,7 +60,9 @@ export const DayWeatherInfo = ({ weather }: Props) => {
   const infoWeatherItems: Item[] = [
     {
       name: "Широта и долгота:",
-      value: `${weather.info.lat}(ш) ${weather.info.lon}(д)`,
+      value: `${weather.info.lat.toFixed(4)}(ш) ${weather.info.lon.toFixed(
+        4
+      )}(д)`,
     },
     {
       name: "Температура (ощущается):",
@@ -93,10 +95,9 @@ export const DayWeatherInfo = ({ weather }: Props) => {
           })}
         </div>
         <div
-          className="absolute top-0 right-0 h-44 w-44"
+          className="absolute top-0 right-0 h-44 w-44 bg-no-repeat bg-cover"
           style={{
-            background:
-              "url(https://yastatic.net/weather/i/icons/funky/dark/ovc.svg)",
+            backgroundImage: `url(https://yastatic.net/weather/i/icons/funky/dark/${weather.fact.icon}.svg)`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
           }}

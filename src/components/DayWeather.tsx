@@ -1,6 +1,5 @@
 import React from "react";
 import { Weather } from "../store/types/types";
-import moment from "moment";
 
 interface Props {
   weather: Weather;
@@ -18,8 +17,7 @@ export const DayWeather = ({ weather }: Props) => {
           <div
             className="h-44 w-44"
             style={{
-              background:
-                "url(https://yastatic.net/weather/i/icons/funky/dark/ovc.svg)",
+              backgroundImage: `url(https://yastatic.net/weather/i/icons/funky/dark/${weather.fact.icon}.svg)`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
             }}
@@ -27,7 +25,10 @@ export const DayWeather = ({ weather }: Props) => {
         </div>
         <div className="text-2xl">
           <div>
-            Местное время: <span>{moment(weather.now_dt).format("LT")}</span>
+            Местное время:
+            <span>{`${new Date(weather.now_dt).getHours()}:${new Date(
+              weather.now_dt
+            ).getMinutes()}`}</span>
           </div>
           <div>
             Местность: <span>{weather?.geo_object?.locality?.name}</span>

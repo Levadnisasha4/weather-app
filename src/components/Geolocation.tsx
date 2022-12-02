@@ -3,7 +3,7 @@ import { Typography, Input, Space, Button } from "antd";
 import { useCustomSelector, useCustomDispatch } from "../hooks/store";
 import { geolocationSlice } from "../store/slices/geolocationSlice";
 
-export const AddGeolocation = () => {
+export const Geolocation = () => {
   const dispatch = useCustomDispatch();
 
   const { currentGeolocation } = useCustomSelector(
@@ -12,9 +12,9 @@ export const AddGeolocation = () => {
 
   return (
     <>
-      <div className="p-5 max-w-sm w-full rounded-md shadow-2xl">
+      <div className="px-5 py-5 w-1/2 w-full rounded-md shadow-2xl mr-2.5">
         <Typography className="font-semibold text-base leading-normal mb-2.5">
-          Добавить новую геопозицию
+          Действия с геопозицией
         </Typography>
         <p className="mb-2.5">Введите наименование</p>
         <Input
@@ -46,7 +46,7 @@ export const AddGeolocation = () => {
         ></Input>
         <p className="mb-2.5">Введите долготу</p>
         <Input
-          className="mb-2.5"
+          className="mb-5"
           placeholder="Долгота..."
           onChange={(event) => {
             dispatch(
@@ -61,6 +61,11 @@ export const AddGeolocation = () => {
         <div className="flex justify-center">
           <Space wrap>
             <Button
+              disabled={
+                currentGeolocation.name === "" ||
+                currentGeolocation.lat === "" ||
+                currentGeolocation.lon === ""
+              }
               onClick={() => {
                 dispatch(geolocationSlice.actions.saveGeolocation({}));
               }}

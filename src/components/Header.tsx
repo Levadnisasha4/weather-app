@@ -12,7 +12,7 @@ export const Header = () => {
         </div>
         <div className="flex items-center">
           <Typography className="font-bold text-2xl">
-            Сервис просмотра прогноза погоды
+            Приложение для просмотра погоды
           </Typography>
         </div>
       </div>

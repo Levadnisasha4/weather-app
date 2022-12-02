@@ -5,6 +5,7 @@ import { useCustomSelector } from "../hooks/store";
 import { Tabs } from "antd";
 import moment from "moment";
 import { currentWeatherSlice } from "../store/slices/currentWeatherSlice";
+import { changeConditionWeather } from "./DayWeatherInfo";
 
 export interface ItemDetailWeatherDays {
   name: string;
@@ -17,25 +18,6 @@ export const DetailWeatherDays = () => {
   );
 
   const dispatch = useCustomDispatch();
-
-  const daysOthersData = [
-    {
-      name: "Описание",
-      value: "Солнечно",
-    },
-    {
-      name: "Скорость ветра",
-      value: "17 м/с",
-    },
-    {
-      name: "Атмосферное давление",
-      value: "765 мм ртутного столба",
-    },
-    {
-      name: "Влажность",
-      value: "Влажно",
-    },
-  ];
 
   return (
     <>
@@ -60,25 +42,60 @@ export const DetailWeatherDays = () => {
                 <div className="w-2/4 border-r flex flex-col">
                   <DayWeatherInfoItem
                     infoItem={{
-                      name: "Дата",
+                      name: "Дата:",
                       value: moment(tabDay.date).format("DD.MM.YYYY"),
                     }}
                   />
-                  {/* <DayWeatherInfoItem
+                  <DayWeatherInfoItem
                     infoItem={{
-                      name: "Минимальная температура",
-                      value: moment(tabDay.date).format("DD.MM.YYYY"),
+                      name: "Минимальная температура:",
+                      value: `${tabDay.parts.day.temp_min}°`,
                     }}
-                  /> */}
+                  />
+                  <DayWeatherInfoItem
+                    infoItem={{
+                      name: "Максимальная температура:",
+                      value: `${tabDay.parts.day.temp_max}°`,
+                    }}
+                  />
+                  <DayWeatherInfoItem
+                    infoItem={{
+                      name: "Средняя температура за день:",
+                      value: `${tabDay.parts.day.temp_avg}°`,
+                    }}
+                  />
+                  <DayWeatherInfoItem
+                    infoItem={{
+                      name: "Температура (ощущается):",
+                      value: `Ощущается как ${tabDay.parts.day.feels_like}°`,
+                    }}
+                  />
                 </div>
                 <div className="w-2/4 flex flex-col pl-10 items-start">
-                  {daysOthersData.map(
-                    (itemDays: ItemDetailWeatherDays, index) => {
-                      return (
-                        <DayWeatherInfoItem key={index} infoItem={itemDays} />
-                      );
-                    }
-                  )}
+                  <DayWeatherInfoItem
+                    infoItem={{
+                      name: "Описание:",
+                      value: changeConditionWeather(tabDay.parts.day.condition),
+                    }}
+                  />
+                  <DayWeatherInfoItem
+                    infoItem={{
+                      name: "Скорость ветра:",
+                      value: `${tabDay.parts.day.wind_speed} м/с`,
+                    }}
+                  />
+                  <DayWeatherInfoItem
+                    infoItem={{
+                      name: "Атмосферное давление:",
+                      value: `${tabDay.parts.day.pressure_mm} мм ртутного столба`,
+                    }}
+                  />
+                  <DayWeatherInfoItem
+                    infoItem={{
+                      name: "Влажность:",
+                      value: `${tabDay.parts.day.humidity} %`,
+                    }}
+                  />
                 </div>
               </div>
             </Tabs.TabPane>
